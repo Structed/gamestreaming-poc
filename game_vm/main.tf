@@ -9,6 +9,10 @@ resource "azurerm_linux_virtual_machine" "vm_game" {
   network_interface_ids = [
     azurerm_network_interface.nic_game.id,
   ]
+  
+  additional_capabilities {
+    ultra_ssd_enabled = true
+  }
 
   admin_ssh_key {
     username   = "adminuser"
