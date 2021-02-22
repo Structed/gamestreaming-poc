@@ -1,16 +1,10 @@
-variable "rg" {
-  description = "The resource group in which to deploy the VM"
-}
 
-variable "subnet" {
-  description = "The subnet to which the VM's nic shall be added"
-}
 
 resource "azurerm_public_ip" "ip_game" {
   name                = "ipGame"
   sku                 = "Basic"
   resource_group_name = var.rg.name
-  location            = var.rg.location #.rg.location
+  location            = var.rg.location
   allocation_method   = "Static"
 }
 
