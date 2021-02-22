@@ -1,6 +1,6 @@
 
 resource "azurerm_managed_disk" "gamedisk" {
-  name                 = "gamedisk"
+  name                 = "${var.prefix}-gamedisk"
   location             = var.rg.location
   resource_group_name  = var.rg.name
   storage_account_type = "UltraSSD_LRS"

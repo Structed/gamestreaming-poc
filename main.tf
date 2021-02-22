@@ -36,5 +36,5 @@ module "vm" {
   source  = "./game_vm"
   rg      = azurerm_resource_group.rg
   subnet  = azurerm_subnet.subnet_game
-  prefix  = "boo"
+  prefix  = "game-vm-1"
 }
