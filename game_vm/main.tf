@@ -1,6 +1,6 @@
 
 resource "azurerm_linux_virtual_machine" "vm_game" {
-  name                = "vmgame"
+  name                = "${var.prefix}-vmgame"
   resource_group_name = var.rg.name
   location            = var.rg.location
   # size                = "Standard_NC8as_T4_v3"
@@ -32,8 +32,14 @@ resource "azurerm_linux_virtual_machine" "vm_game" {
   }
 }
 
-resource "azurerm_virtual_machine_data_disk_attachment" "gamedisk_attachment" {
-  managed_disk_id    = azurerm_managed_disk.gamedisk.id
+resource "azurerm_virtual_machine_data_disk_attachment" "gamedisk_ultradisk_attachment" {
+  managed_disk_id    = azurerm_managed_disk.gamedisk_ultradisk.id
+  virtual_machine_id = azurerm_linux_virtual_machine.vm_game.id
+  lun                = "10"
+  caching            = "None"
+}
+resource "azurerm_virtual_machine_data_disk_attachment" "gamedisk_premiumssd_attachment" {
+  managed_disk_id    = azurerm_managed_disk.gamedisk_premiumssd.id
   virtual_machine_id = azurerm_linux_virtual_machine.vm_game.id
   lun                = "10"
   caching            = "None"
