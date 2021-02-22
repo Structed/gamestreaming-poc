@@ -56,7 +56,8 @@ resource "azurerm_linux_virtual_machine" "vm_game" {
   name                = "vmgame"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
-  size                = "Standard_NC8as_T4_v3"
+  # size                = "Standard_NC8as_T4_v3"
+  size                = "Standard_D48s_v3"
   admin_username      = "adminuser"
   network_interface_ids = [
     azurerm_network_interface.nic_game.id,
