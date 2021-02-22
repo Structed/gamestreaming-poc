@@ -19,6 +19,7 @@ resource "azurerm_resource_group" "rg" {
 
 resource "azurerm_public_ip" "ip_game" {
   name                = "ipGame"
+  sku                 = "Basic"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   allocation_method   = "Static"
@@ -46,14 +47,13 @@ resource "azurerm_network_interface" "nic_game" {
   ip_configuration {
     name                          = "internal"
     private_ip_address_allocation = "Dynamic"
-    sku                           = "Basic"
     public_ip_address_id          = azurerm_public_ip.ip_game.id
     subnet_id                     = azurerm_subnet.subnet_game.id
   }
 }
 
 resource "azurerm_linux_virtual_machine" "vm_game" {
-  name                = "vm_game"
+  name                = "vmgame"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   size                = "Standard_NC8as_T4_v3"
