@@ -33,7 +33,8 @@ resource "azurerm_subnet" "subnet_game" {
 
 
 module "vm" {
-  source = "./game_vm"
-  rg = azurerm_resource_group.rg
-  subnet = azurerm_subnet.subnet_game
+  source  = "./game_vm"
+  rg      = azurerm_resource_group.rg
+  subnet  = azurerm_subnet.subnet_game
+  prefix  = "boo"
 }

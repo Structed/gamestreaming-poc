@@ -5,3 +5,8 @@ variable "rg" {
 variable "subnet" {
   description = "The subnet to which the VM's nic shall be added"
 }
+
+variable "prefix" {
+    type = string
+    description = "Resource Name prefix"
+}
