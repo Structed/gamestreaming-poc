@@ -14,7 +14,7 @@ provider "azurerm" {
 
 resource "azurerm_resource_group" "rg" {
   name     = "rg-boo-poc"
-  location = "westus2"
+  location = "koreacentral"
 }
 
 resource "azurerm_virtual_network" "network_game" {
