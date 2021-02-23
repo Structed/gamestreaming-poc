@@ -13,7 +13,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "rg" {
-  name     = "rg-boo-poc"
+  name     = "rg-gamestreaming-poc"
   location = "koreacentral"
 }
 
@@ -33,8 +33,12 @@ resource "azurerm_subnet" "subnet_game" {
 
 
 module "vm" {
+  count = 2
   source  = "./game_vm"
   rg      = azurerm_resource_group.rg
   subnet  = azurerm_subnet.subnet_game
-  prefix  = "game-vm-1"
+  prefix  = "game-vm-${count.index}"
+  windows = count.index % 2 == 1 ? true : false # alternate windows/linux VMs
+  vm_size = "Standard_D48s_v3"
+  # vm_size = "Standard_NC8as_T4_v3"
 }
